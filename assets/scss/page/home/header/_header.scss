@@ -1,0 +1,53 @@
+@use "../../../presets" as *;
+
+.page-header {
+  position: relative;
+
+  &__grid {
+    position: absolute;
+
+    //todo: показать
+    display: none;
+  }
+
+  &__logo {
+  }
+
+  &__menu {
+  }
+
+  &__actions {
+  }
+
+  &__content {
+    min-height: 100vh;
+    background-color: $color-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-title {
+      position: absolute;
+      margin: 0;
+      font-size: 38px;
+      text-align: center;
+
+      color: $color-white;
+      max-width: 670px;
+      padding: $gap;
+      z-index: 1;
+    }
+
+    &-image {
+      transform: translateY(30%);
+    }
+  }
+
+  &__button {
+    position: absolute;
+
+    //todo: показать
+    display: none;
+  }
+
+}

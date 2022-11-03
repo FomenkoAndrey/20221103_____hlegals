@@ -12,7 +12,7 @@ const option = process.argv[3];
 
 const PATH = {
   scssFolder: './assets/scss/',
-  scssFiles: './assets/scss/**/*.scss',
+  scssFiles: ['./assets/scss/**/*.scss'],
   scssRoot: './assets/scss/style.scss',
   cssFolder: './assets/css/',
   cssFiles: './assets/css/*.css',
@@ -25,7 +25,7 @@ const PATH = {
 };
 
 const PLUGINS = [
-  dc({ discardComments: true }),
+  dc({discardComments: true}),
   autoprefixer({
     overrideBrowserslist: [
       'last 5 versions',
@@ -38,28 +38,29 @@ const PLUGINS = [
 
 function scss() {
   return src(PATH.scssRoot)
-    .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-    .pipe(postcss(PLUGINS))
-    .pipe(csscomb())
-    .pipe(dest(PATH.cssFolder))
-    .pipe(browserSync.stream());
+      .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+      .pipe(postcss(PLUGINS))
+      .pipe(csscomb())
+      .pipe(dest(PATH.cssFolder))
+      .pipe(browserSync.stream());
 }
-function scssDev() {
-  const pluginsForDevMode = [...PLUGINS]
 
-  pluginsForDevMode.splice(1,1)
+function scssDev() {
+  const pluginsForDevMode = [...PLUGINS];
+
+  pluginsForDevMode.splice(1, 1);
 
   return src(PATH.scssRoot, {sourcemaps: true})
-    .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-    .pipe(postcss(pluginsForDevMode))
-    .pipe(dest(PATH.cssFolder, {sourcemaps: true}))
-    .pipe(browserSync.stream());
+      .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+      .pipe(postcss(pluginsForDevMode))
+      .pipe(dest(PATH.cssFolder, {sourcemaps: true}))
+      .pipe(browserSync.stream());
 }
 
 function comb() {
   return src(PATH.scssFiles)
-    .pipe(csscomb())
-    .pipe(dest(PATH.scssFolder));
+      .pipe(csscomb())
+      .pipe(dest(PATH.scssFolder));
 }
 
 function syncInit() {
@@ -99,10 +100,10 @@ function createStructure() {
   file[3] = scssFiles;
 
   src('*.*', {read: false})
-    .pipe(dest(PATH.scssFolder))
-    .pipe(dest(PATH.cssFolder))
-    .pipe(dest(PATH.jsFolder))
-    .pipe(dest(PATH.imgFolder));
+      .pipe(dest(PATH.scssFolder))
+      .pipe(dest(PATH.cssFolder))
+      .pipe(dest(PATH.jsFolder))
+      .pipe(dest(PATH.imgFolder));
 
   return new Promise((resolve) => setTimeout(() => {
     for (let i = 0; i < file.length; i++) if (!Array.isArray(file[i])) {
