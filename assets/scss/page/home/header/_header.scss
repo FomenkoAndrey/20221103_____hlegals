@@ -1,45 +1,78 @@
 @use "../../../presets" as *;
+@use "../../../mixins" as *;
 
 .page-header {
   position: relative;
+  background: $bg-gradient-soft;
+
+  &::before {
+    content: "";
+    background-image: url(../img/Frame2.svg);
+    background-size: 85vh;
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    @include abs-position;
+  }
+
+  &::after {
+    content: "";
+    background: linear-gradient(to top, $color-primary 0%, transparent 100%);
+    @include abs-position(70%)
+  }
 
   &__grid {
     position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "logo actions" "logo menu";
+    gap: $gap;
+    padding-top: 50px;
 
-    //todo: показать
-    display: none;
+    @extend %container;
   }
 
   &__logo {
+    grid-area: logo;
   }
 
   &__menu {
+    grid-area: menu;
   }
 
   &__actions {
+    grid-area: actions;
   }
 
   &__content {
+    position: relative;
+
     min-height: 100vh;
-    background-color: $color-primary;
     display: flex;
     align-items: center;
     justify-content: center;
 
     &-title {
-      position: absolute;
+      position: relative;
+      z-index: 1;
       margin: 0;
       font-size: 38px;
       text-align: center;
 
       color: $color-white;
-      max-width: 670px;
+      max-width: 640px;
       padding: $gap;
-      z-index: 1;
+
+      font-weight: 500;
     }
 
     &-image {
-      transform: translateY(30%);
+      position: absolute;
+      height: 63vh;
+      bottom: 0;
     }
   }
 
