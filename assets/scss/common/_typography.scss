@@ -15,6 +15,22 @@ html {
 
 body {
   line-height: 1.2;
+
+  &.active {
+    overflow: hidden;
+    transform: translateX(-$mobile-menu-size);
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba($color-black, 0.5);
+    }
+  }
 }
 
 a {

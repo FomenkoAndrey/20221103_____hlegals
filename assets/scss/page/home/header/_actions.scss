@@ -3,9 +3,17 @@
 
 .actions {
   display: flex;
-  justify-content: flex-end;
   gap: $gap;
   align-items: center;
+
+  @include sm-min {
+    color: $color-white;
+    justify-content: flex-end;
+  }
+  @include sm {
+    color: $color-gray-bg-text;
+    justify-content: space-between;
+  }
 
   &__languages {
     display: flex;
@@ -14,13 +22,14 @@
       font-weight: 700;
       font-size: 12px;
       letter-spacing: 1px;
-      color: $color-white;
+      color: inherit;
       display: block;
       padding: 5px;
       border-radius: 8px;
 
       &.-active {
         background-color: $color-accent;
+        color: $color-white;
       }
     }
   }
@@ -28,15 +37,25 @@
   &__locations {
     font-style: normal;
 
+    @include sm {
+      display: none;
+    }
+
     &-link {
-      color: $color-white;
+      color: inherit;
     }
   }
 
   &__phones {
     &-link {
       font-weight: 700;
-      color: $color-white;
+      color: inherit;
+    }
+  }
+
+  &__socials {
+    @include sm {
+      display: none;
     }
   }
 }
