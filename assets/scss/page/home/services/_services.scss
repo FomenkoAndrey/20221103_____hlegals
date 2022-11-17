@@ -1,0 +1,34 @@
+@use "../../../presets" as *;
+@use "../../../mixins" as *;
+
+.services {
+  position: relative;
+  background: $bg-gradient-super-soft;
+  border-radius: 0 0 12px 12px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 40px;
+    left: 40px;
+    height: 20px;
+    border-radius: 0 0 12px 12px;
+    background-color: $color-gray-bg-separator;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    left: 20px;
+    height: 10px;
+    border-radius: 0 0 12px 12px;
+    background-color: $color-gray-bg-text;
+  }
+
+  &__container {
+    @extend %container;
+  }
+}
